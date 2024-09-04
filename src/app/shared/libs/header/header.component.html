@@ -1,0 +1,27 @@
+<header class="w-screen px-10 grid grid-cols-3 items-center">
+  <div class="text-white">
+    <h1 class="font-['BentonSans_Medium'] text-xl">Digi<small class="font-['BentonSans_Light']">Trade</small></h1>
+  </div>
+  <div class="flex items-center justify-center">
+    <img
+      [src]="assetUrl + '/assets/images/stanbic_logo.png'"
+      alt="stanbic_logo"
+      class="w-10 h-10 object-cover object-center"
+    />
+  </div>
+
+  <div class="flex items-center justify-end gap-3 text-white">
+    <div class="flex gap-2 items-center">
+      <span class="flex items-center gap-2">
+        <mat-icon svgIcon="icn_people_profile"></mat-icon>
+        <p class="font-['BentonSans_Regular'] cursor-pointer capitalize hidden md:block">
+          {{ name() }}
+        </p>
+      </span>
+      <span class="bg-[#0062E14D] px-2 flex items-center py-8 gap-2">
+        <mat-icon svgIcon="icn_lock"></mat-icon>
+        <p>Sign Out</p>
+      </span>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,22 @@
+<app-dashboard-container>
+  <app-header></app-header>
+
+  <app-dashboard-content-container style="flex: 1 1 auto">
+    <app-main-content-container style="flex: 1 1 auto">
+      <div class="bg-red-400">
+        <nav class="flex gap-6 w-full items-center text-sm py-2 px-6 bg-[#0062E1]">
+          @for (item of dashboardView; track $index) {
+            <button
+              (click)="changeView(item.title)"
+              class=" w-fit cursor-pointer p-2 text-white  flex flex-col items-center "
+            >
+              <p class=" text-sm ">{{ item.title }}</p>
+              <span class="w-2/3 border" [class]="currentView() === item.title ? 'border-white':' border-transparent'"></span>
+            </button>
+          }
+        </nav>
+        <router-outlet />
+      </div>
+    </app-main-content-container>
+  </app-dashboard-content-container>
+</app-dashboard-container>

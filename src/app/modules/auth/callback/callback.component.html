@@ -1,0 +1,29 @@
+<main
+  class="w-screen h-screen bg-[#0033AA] bg-center bg-no-repeat bg-cover flex justify-center items-center"
+  [style.backgroundImage]="'url(' + assetUrl + '/assets/images/shield_ripple.png)'"
+>
+  <section class="bg-white rounded p-4 w-96">
+    <header class="space-y-6">
+      <img [src]="assetUrl + '/assets/images/sblogo.png'" alt="" />
+      <div class="flex items-center justify-center">
+        @switch (status) {
+          @case (progress.LOADING) {
+            <mat-spinner diameter="50"></mat-spinner>
+          }
+          @case (progress.FAILED) {
+            <div class="space-y-2">
+              <h2 class="text-3xl font-['BentonSans_Bold'] text-center">Access Denied</h2>
+              <p class="text-center text-sm">Failed Authenticating Your Access. Please contact admin for support.</p>
+            </div>
+          }
+          @case (progress.DONE) {
+            <div class="space-y-2">
+              <h2 class="text-3xl font-['BentonSans_Bold'] text-center">Access Granted</h2>
+              <p class="text-center text-sm">You are now being redirected to the application...</p>
+            </div>
+          }
+        }
+      </div>
+    </header>
+  </section>
+</main>

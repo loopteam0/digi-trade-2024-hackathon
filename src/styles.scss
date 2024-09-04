@@ -1,1 +1,189 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "BentonSans Thin";
+  src: url("assets/fonts/BentonSans/BentonSans-Thin.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "BentonSans Light";
+  src: url("assets/fonts/BentonSans/BentonSans-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "BentonSans Book";
+  src: url("assets/fonts/BentonSans/BentonSans-Book.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "BentonSans Regular";
+  src: url("assets/fonts/BentonSans/BentonSans-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "BentonSans Medium";
+  src: url("assets/fonts/BentonSans/BentonSans-Medium.otf") format("opentype");
+}
+
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+@font-face {
+  font-family: "BentonSans Bold";
+  src: url("assets/fonts/BentonSans/BentonSans-Bold.otf") format("opentype");
+}
+
+* {
+  font-family: "BentonSans Regular";
+}
+
+html,
+body {
+  background-color: #ffffff;
+  color: #111827;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "BentonSans Regular", "Helvetica Neue", sans-serif;
+}
+
+.btn-container {
+  @apply w-full bg-[#F8F8F8] p-4 flex justify-end items-center  md:gap-3 gap-2;
+}
+
+.btn {
+  @apply px-4 py-2 text-base max-sm:w-fit rounded-md cursor-pointer
+  transition duration-300 ease-in-out disabled:border-slate-400 disabled:cursor-not-allowed outline-none;
+}
+
+.btn-primary {
+  @apply btn bg-darkPrimary   text-white border-none  disabled:bg-darkPrimary disabled:bg-opacity-65  transition duration-300 ease-in-out;
+  &:hover {
+    @apply bg-opacity-80;
+  }
+}
+
+.btn-secondary {
+  @apply btn border-gray-200 border bg-white  text-black rounded-md;
+  &:hover {
+    @apply bg-gray-100;
+  }
+}
+
+.success-snackbar .mdc-snackbar__surface {
+  @apply text-white text-center;
+  background-color: rgba(0, 133, 51, 1) !important;
+}
+
+.success-snackbar button {
+  display: none !important;
+}
+.info-snackbar .mdc-snackbar__surface {
+  @apply text-white text-center;
+  background-color: rgb(32, 32, 32) !important;
+}
+.info-snackbar button {
+  display: none !important;
+}
+
+.error-snackbar .mdc-snackbar__surface {
+  @apply text-white text-center;
+  background-color: rgba(220, 10, 10, 1) !important;
+}
+
+.error-snackbar button {
+  color: white !important;
+  border-color: white !important;
+  border: 1px solid white !important;
+}
+
+mat-radio-button {
+  accent-color: #0062e1 !important;
+}
+
+mat-form-field .mat-mdc-form-field-infix {
+  min-height: 0px !important;
+  padding: 12px 0 !important;
+}
+
+.mat-dialog-container {
+  border-radius: 16px !important;
+}
+
+html {
+  --scrollbarBG: #cfd8dc;
+  --thumbBG: #90a4ae;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  scroll-margin-left: 10px;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 1px solid var(--scrollbarBG);
+}
+table {
+  overflow: hidden;
+  width: 100%;
+  // border-collapse: collapse;
+}
+table th {
+  background-color: #fafafa !important;
+  border-bottom: 1px solid #00000010 !important;
+  font-family: "BentonSans Medium";
+  font-size: 14px;
+}
+
+table tr {
+  cursor: pointer;
+  background-color: #ffffff !important;
+}
+table td {
+  border-bottom: 1px solid #00000010 !important;
+}
+table tr:last-child td {
+  border-bottom: none !important;
+}
+.mat-mdc-paginator-outer-container {
+  background-color: white !important;
+}
+.mat-mdc-dialog-surface {
+  border-radius: 16px !important;
+}
+.formDialogs {
+  width: 70vw !important;
+}
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 80vw !important;
+}
+.mat-mdc-dialog-actions {
+  padding: 16px 0px 0px 0px !important;
+}
+.mat-mdc-menu-panel {
+  background-color: white !important;
+}
+.mat-mdc-dialog-content {
+  background-color: white !important;
+}
