@@ -1,0 +1,46 @@
+.fileover {
+  border: 2px dashed #323537 !important;
+  opacity: 0.6;
+}
+.progressContainer {
+  height: 5px;
+  width: 100%;
+  position: relative;
+  background-color: #888888cd;
+  border-radius: 5px;
+  .progressBar {
+    height: 100%;
+    background-color: #14b8a6;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    transition: 0.2s all;
+  }
+}
+.trash {
+  &:hover {
+    path {
+      fill: #ff0000;
+    }
+  }
+}
+.image-container {
+  position: relative;
+}
+.image-container .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  color: #fff;
+}
+.image-container:hover .after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+}

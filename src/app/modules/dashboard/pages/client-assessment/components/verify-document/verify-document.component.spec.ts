@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OverviewComponent } from "./overview.component";
+import { VerifyDocumentComponent } from "./verify-document.component";
 
-describe("OverviewComponent", () => {
-  let component: OverviewComponent;
-  let fixture: ComponentFixture<OverviewComponent>;
+describe("VerifyDocumentComponent", () => {
+  let component: VerifyDocumentComponent;
+  let fixture: ComponentFixture<VerifyDocumentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OverviewComponent],
+      imports: [VerifyDocumentComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OverviewComponent);
+    fixture = TestBed.createComponent(VerifyDocumentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

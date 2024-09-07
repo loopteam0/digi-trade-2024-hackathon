@@ -3,18 +3,15 @@
 
   <app-dashboard-content-container style="flex: 1 1 auto">
     <app-main-content-container style="flex: 1 1 auto">
-      <div class="bg-red-400">
-        <nav class="flex gap-6 w-full items-center text-sm py-2 px-6 bg-[#0062E1]">
-          @for (item of dashboardView; track $index) {
-            <button
-              (click)="changeView(item.title)"
-              class=" w-fit cursor-pointer p-2 text-white  flex flex-col items-center "
-            >
-              <p class=" text-sm ">{{ item.title }}</p>
-              <span class="w-2/3 border" [class]="currentView() === item.title ? 'border-white':' border-transparent'"></span>
-            </button>
-          }
-        </nav>
+      <nav class="flex gap-6 w-full items-center text-sm py-2 px-6 bg-[#0062E1]">
+        @for (item of dashboardView; track $index) {
+          <button [routerLink]="item.routerLink" class="w-fit cursor-pointer p-2 text-white flex flex-col items-center">
+            <p class="text-sm">{{ item.title }}</p>
+            <span class="w-2/3" routerLinkActive="border" [routerLinkActiveOptions]="{ exact: true }"></span>
+          </button>
+        }
+      </nav>
+      <div class="bg-[#F4F5F7] h-[calc(100vh-142px)] px-11 py-5 overflow-y-auto">
         <router-outlet />
       </div>
     </app-main-content-container>

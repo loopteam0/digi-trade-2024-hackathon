@@ -1,0 +1,73 @@
+<span class="flex flex-col gap-3 w-full">
+  <form
+    appDnd
+    (fileDropped)="onFileDropped($event)"
+    class="bg-blue-50 border-2 border-dashed border-blue-300 h-44 rounded-lg flex flex-col justify-center items-center"
+  >
+    <input
+      class="hidden"
+      type="file"
+      (change)="onFileSelected($event)"
+      accept="application/msword, text/plain, application/pdf, image/*, .doc, .docx"
+      multiple="true"
+      #file
+    />
+    <img [src]="assetUrl + 'assets/icons/upload-image.svg'" alt="" />
+    <h3 class="text-black font-sans text-center max-sm:text-sm">
+      Drag and drop file here or
+      <button (click)="file.click()" class="text-primary cursor-pointer">browse files</button>
+    </h3>
+    <p class="text-muted">Maximum size: 10MB</p>
+  </form>
+</span>
+<section class="space-y-4 mt-4">
+  @if (uploadedFiles.length > 0) {
+    @for (item of uploadedFiles; track $index) {
+      <div class="w-full bg-green-50 rounded p-4 flex flex-col gap-4">
+        @if (progress === 100) {
+          <div class="flex items-center justify-between w-full">
+            <span class="w-10/12 flex flex-col items-start">
+              <h2 class="text-muted font-['BentonSans_Medium'] text-xs w-1/3 truncate ...">
+                {{ item.fileName }}
+              </h2>
+            </span>
+            <span class="flex gap-3 items-center">
+              <svg
+                width="16"
+                height="17"
+                viewBox="0 0 16 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                mat-icon-button
+                color="primary"
+                class="trash cursor-pointer"
+                (click)="removeFile($index)"
+              >
+                <g clip-path="url(#clip0_827_1544)">
+                  <path
+                    d="M5.5 5.56006C5.63261 5.56006 5.75979 5.61274 5.85355 5.70651C5.94732 5.80027 6 5.92745 6 6.06006V12.0601C6 12.1927 5.94732 12.3198 5.85355 12.4136C5.75979 12.5074 5.63261 12.5601 5.5 12.5601C5.36739 12.5601 5.24021 12.5074 5.14645 12.4136C5.05268 12.3198 5 12.1927 5 12.0601V6.06006C5 5.92745 5.05268 5.80027 5.14645 5.70651C5.24021 5.61274 5.36739 5.56006 5.5 5.56006ZM8 5.56006C8.13261 5.56006 8.25979 5.61274 8.35355 5.70651C8.44732 5.80027 8.5 5.92745 8.5 6.06006V12.0601C8.5 12.1927 8.44732 12.3198 8.35355 12.4136C8.25979 12.5074 8.13261 12.5601 8 12.5601C7.86739 12.5601 7.74021 12.5074 7.64645 12.4136C7.55268 12.3198 7.5 12.1927 7.5 12.0601V6.06006C7.5 5.92745 7.55268 5.80027 7.64645 5.70651C7.74021 5.61274 7.86739 5.56006 8 5.56006ZM11 6.06006C11 5.92745 10.9473 5.80027 10.8536 5.70651C10.7598 5.61274 10.6326 5.56006 10.5 5.56006C10.3674 5.56006 10.2402 5.61274 10.1464 5.70651C10.0527 5.80027 10 5.92745 10 6.06006V12.0601C10 12.1927 10.0527 12.3198 10.1464 12.4136C10.2402 12.5074 10.3674 12.5601 10.5 12.5601C10.6326 12.5601 10.7598 12.5074 10.8536 12.4136C10.9473 12.3198 11 12.1927 11 12.0601V6.06006Z"
+                    fill="#6B7280"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M14.5 3.06006C14.5 3.32528 14.3946 3.57963 14.2071 3.76717C14.0196 3.9547 13.7652 4.06006 13.5 4.06006H13V13.0601C13 13.5905 12.7893 14.0992 12.4142 14.4743C12.0391 14.8493 11.5304 15.0601 11 15.0601H5C4.46957 15.0601 3.96086 14.8493 3.58579 14.4743C3.21071 14.0992 3 13.5905 3 13.0601V4.06006H2.5C2.23478 4.06006 1.98043 3.9547 1.79289 3.76717C1.60536 3.57963 1.5 3.32528 1.5 3.06006V2.06006C1.5 1.79484 1.60536 1.54049 1.79289 1.35295C1.98043 1.16542 2.23478 1.06006 2.5 1.06006H6C6 0.794842 6.10536 0.540488 6.29289 0.352952C6.48043 0.165415 6.73478 0.0600586 7 0.0600586L9 0.0600586C9.26522 0.0600586 9.51957 0.165415 9.70711 0.352952C9.89464 0.540488 10 0.794842 10 1.06006H13.5C13.7652 1.06006 14.0196 1.16542 14.2071 1.35295C14.3946 1.54049 14.5 1.79484 14.5 2.06006V3.06006ZM4.118 4.06006L4 4.11906V13.0601C4 13.3253 4.10536 13.5796 4.29289 13.7672C4.48043 13.9547 4.73478 14.0601 5 14.0601H11C11.2652 14.0601 11.5196 13.9547 11.7071 13.7672C11.8946 13.5796 12 13.3253 12 13.0601V4.11906L11.882 4.06006H4.118ZM2.5 3.06006V2.06006H13.5V3.06006H2.5Z"
+                    fill="#6B7280"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_827_1544">
+                    <rect width="16" height="16" fill="white" transform="translate(0 0.0600586)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
+          </div>
+        }
+        <div class="progressContainer">
+          <div class="progressBar" [ngStyle]="{ 'width.%': progress }"></div>
+        </div>
+      </div>
+    }
+  }
+</section>

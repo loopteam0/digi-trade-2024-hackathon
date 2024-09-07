@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OverviewComponent } from "./overview.component";
+import { UploadItemComponent } from "./upload-item.component";
 
-describe("OverviewComponent", () => {
-  let component: OverviewComponent;
-  let fixture: ComponentFixture<OverviewComponent>;
+describe("UploadItemComponent", () => {
+  let component: UploadItemComponent;
+  let fixture: ComponentFixture<UploadItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OverviewComponent],
+      imports: [UploadItemComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OverviewComponent);
+    fixture = TestBed.createComponent(UploadItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

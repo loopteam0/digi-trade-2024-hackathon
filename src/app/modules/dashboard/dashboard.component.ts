@@ -1,5 +1,5 @@
-import { Component, signal } from "@angular/core";
-import { RouterOutlet, RouterModule } from "@angular/router";
+import { Component, inject } from "@angular/core";
+import { RouterOutlet, RouterModule, Router, ActivatedRoute } from "@angular/router";
 import { HeaderComponent } from "src/app/shared/libs/header/header.component";
 import { SharedModule } from "src/app/shared/shared.module";
 
@@ -11,25 +11,20 @@ import { SharedModule } from "src/app/shared/shared.module";
   styleUrl: "./dashboard.component.scss",
 })
 export class DashboardComponent {
-  dashboardView = [
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+  dashboardView: { title: string; routerLink: string }[] = [
     {
       title: "Overview",
-      routerLink: "/overview",
+      routerLink: "/dashboard/overview",
     },
     {
       title: "Client Assessment",
-      routerLink: "/client-assessment",
+      routerLink: "/dashboard/client-assessment",
     },
     {
       title: "Document Verification",
-      routerLink: "/document-verification",
+      routerLink: "/dashboard/document-verification",
     },
-  
-  ]
-  currentView= signal<string>('Overview');
-
-  changeView(view: string) {
-    this.currentView.set(view);
-  }
-
+  ];
 }

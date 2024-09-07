@@ -1,1 +1,161 @@
-<p>overview works!</p>
+<main class="space-y-10">
+  <nav class="w-full flex items-center gap-2">
+    @for (item of ["Overview", "Clients"]; track $index) {
+      <button
+        (click)="changeView(item)"
+        class="w-fit cursor-pointer p-2 text-[#344054] rounded"
+        [class]="currentView() === item ? 'bg-[#DFEEFD] font-[\'BentonSans_Medium\']' : 'bg-transparent'"
+      >
+        {{ item }}
+      </button>
+    }
+  </nav>
+  <ng-container *ngTemplateOutlet="selectedTemplate"></ng-container>
+</main>
+<ng-template #overview>
+  <section class="space-y-10">
+    <div class="">
+      <h1 class="text-3xl font-['BentonSans_Medium'] text-[#1A314D]">Welcome back, {{ name().split(" ")[0] }}</h1>
+      <p class="text-[#667085]">Here is an overview of</p>
+    </div>
+    <div class="bg-white p-4 border rounded-lg">
+      <div class="grid grid-cols-4 items-center gap-4">
+        @for (item of overviewData; track $index) {
+          <div class="flex flex-col items-center justify-center gap-2 border-r last:border-none">
+            <div class="">
+              <mat-icon [svgIcon]="item.icon" class="w-9 h-9"></mat-icon>
+              <h1 class="text-2xl font-['BentonSans_Medium']">{{ item.value }}</h1>
+              <p class="text-[#667085] text-sm">{{ item.title }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="flex items-center justify-between w-full">
+      <h2 class="text-2xl font-['BentonSans_Medium']">Important Updates from Digitrade AI</h2>
+      <div class="border-primary border ring-4 ring-blue-200 p-2 bg-white rounded-md flex gap-2 items-center w-[370px]">
+        <mat-icon class="stroke-1 text-[#6B7280]">search</mat-icon>
+        <input type="text" class="outline-none text-sm font-sans font-normal w-full" placeholder="Search" />
+      </div>
+    </div>
+    <div class="w-full">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="updates">
+          <th mat-header-cell *matHeaderCellDef>Updates</th>
+          <td mat-cell *matCellDef="let element">{{ element.updates }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="severity">
+          <th mat-header-cell *matHeaderCellDef>Severity</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.severity }}
+            <div class="progressContainer">
+              <div
+                class="progressBar"
+                [style]="'width:' + element.severity + '%'"
+                [ngClass]="{
+                  'bg-green-600': element.severity <= 30,
+                  'bg-yellow-400': element.severity > 30 && element.severity <= 60,
+                  'bg-orange-500': element.severity > 60 && element.severity <= 70,
+                  'bg-red-500': element.severity > 70 && element.severity <= 185,
+                  'bg-red-600': element.severity > 85,
+                }"
+              ></div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button [matMenuTriggerFor]="menu" mat-icon-button (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <div class="flex flex-col">
+                <button class="btn">
+                  <div class="flex gap-3">
+                    <mat-icon svgIcon="icn_pencil"></mat-icon>
+                    <p>Update Screening Status</p>
+                  </div>
+                </button>
+              </div>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="overViewColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: overViewColumn"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of securities data">
+      </mat-paginator>
+    </div>
+  </section>
+</ng-template>
+<ng-template #client>
+  <div class="flex items-center justify-between w-full">
+    <h2 class="text-2xl font-['BentonSans_Medium']">Clients in your Portfolio</h2>
+    <div class="border-primary border ring-4 ring-blue-200 p-2 bg-white rounded-md flex gap-2 items-center w-[370px]">
+      <mat-icon class="stroke-1 text-[#6B7280]">search</mat-icon>
+      <input type="text" class="outline-none text-sm font-sans font-normal w-full" placeholder="Search" />
+    </div>
+  </div>
+  <div class="w-full">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="contactPerson">
+        <th mat-header-cell *matHeaderCellDef>Contact Person</th>
+        <td mat-cell *matCellDef="let element">{{ element.contactPerson }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="severity">
+        <th mat-header-cell *matHeaderCellDef>Severity</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.severity }}
+          <div class="progressContainer">
+            <div
+              class="progressBar"
+              [style]="'width:' + element.severity + '%'"
+              [ngClass]="{
+                'bg-green-600': element.severity <= 30,
+                'bg-yellow-400': element.severity > 30 && element.severity <= 60,
+                'bg-orange-500': element.severity > 60 && element.severity <= 70,
+                'bg-red-500': element.severity > 70 && element.severity <= 185,
+                'bg-red-600': element.severity > 85,
+              }"
+            ></div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button [matMenuTriggerFor]="menu" mat-icon-button (click)="$event.stopPropagation()">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <div class="flex flex-col">
+              <button class="btn">
+                <div class="flex gap-3">
+                  <mat-icon svgIcon="icn_pencil"></mat-icon>
+                  <p>Update Screening Status</p>
+                </div>
+              </button>
+            </div>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="clientColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns: clientColumn"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons aria-label="Select page of securities data">
+    </mat-paginator>
+  </div>
+</ng-template>

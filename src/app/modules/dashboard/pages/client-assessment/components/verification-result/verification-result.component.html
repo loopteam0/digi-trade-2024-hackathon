@@ -1,0 +1,52 @@
+<main class="space-y-10">
+  <button class="flex btn-secondary items-center" (click)="goBack()">
+    <mat-icon class="stroke-1 text-[#6B7280]">arrow_back</mat-icon>
+    Back to Dashboard
+  </button>
+  <section class="bg-white rounded-t-xl p-8 space-y-6">
+    <div class="space-y-2">
+      <h1 class="text-xl font-['BentonSans_Medium'] text-[#1A314D]">Verification Results</h1>
+    </div>
+    <div class="rounded-lg border bg-white p-6 space-y-4">
+      <div class="w-full grid grid-cols-2 gap-6">
+        <section class="border rounded-md p-4 space-y-4">
+          <h2 class="text-lg font-['BentonSans_Medium']">Scale</h2>
+          <div class="h-32">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [labels]="chartOptions.labels"
+              [colors]="chartOptions.colors"
+              [dataLabels]="chartOptions.datalabels"
+              [plotOptions]="chartOptions.plotOptions"
+              [legend]="chartOptions.legend"
+            >
+            </apx-chart>
+          </div>
+        </section>
+        <section class="border rounded-md p-4 space-y-4">
+          <h2 class="text-lg font-['BentonSans_Medium']">Integrations</h2>
+          <div class="grid grid-cols-2">
+            <div class="flex flex-col justify-center gap-6">
+              <mat-icon class="stroke-1 text-[#6B7280]">check_circle</mat-icon>
+              <p class="text-green-600 font-['BentonSans_Bold']">Approved</p>
+              <p class="text-[#6B7280] text-xs">DCP</p>
+            </div>
+            <div class="flex flex-col justify-center gap-6">
+              <mat-icon class="stroke-1 text-[#6B7280]">check_circle</mat-icon>
+              <p class="font-['BentonSans_Medium']">SB 10</p>
+              <p class="text-[#6B7280] text-xs">CRS</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="border rounded-lg p-6">
+      <ol class="w-full list-decimal space-y-3 pl-5" type="1">
+        @for (item of recommendations; track $index) {
+          <li class="p-2 border-b text-[#6B7280] text-sm">{{ item }}</li>
+        }
+      </ol>
+    </div>
+  </section>
+</main>

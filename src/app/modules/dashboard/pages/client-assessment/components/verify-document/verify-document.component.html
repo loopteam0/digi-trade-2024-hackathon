@@ -1,0 +1,53 @@
+<main class="space-y-10">
+  <button class="flex btn-secondary items-center" (click)="goBack()">
+    <mat-icon class="stroke-1 text-[#6B7280]">arrow_back</mat-icon>
+    Back
+  </button>
+  <section class="bg-white rounded-t-xl p-8 space-y-6" [formGroup]="documentInfo">
+    <div class="space-y-2">
+      <h1 class="text-xl font-['BentonSans_Medium'] text-[#1A314D]">Verify Documents</h1>
+      <p class="text-[#5C6C80]">Provide the details below to verify a document</p>
+    </div>
+    <div class="rounded-lg border bg-white p-6 space-y-4">
+      <h2 class="text-lg font-['BentonSans_Medium']">Upload Documents</h2>
+      <div class="w-full grid grid-cols-3 gap-6">
+        <span class="space-y-2 w-full">
+          <p class="font-['BentonSans_Medium'] text-sm">Document Type</p>
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-select placeholder="Select Document Type" formControlName="docType">
+              <mat-option value="passport">Passport</mat-option>
+              <mat-option value="nationalId">National ID</mat-option>
+              <mat-option value="driverLicense">Driver's License</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </span>
+        <span class="space-y-2 w-full">
+          <p class="font-['BentonSans_Medium'] text-sm">Originating Bank</p>
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-select placeholder="Select Bank" formControlName="bank">
+              <mat-option value="Stanbic Bank">Stanbic Bank</mat-option>
+              <mat-option value="Standard Chartered">Standard Chartered</mat-option>
+              <mat-option value="Ecobank">Ecobank</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </span>
+        <span class="space-y-2 w-full">
+          <p class="font-['BentonSans_Medium'] text-sm">Country of Operation</p>
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-select placeholder="Select Country" formControlName="country">
+              <mat-option value="Ghana">Ghana</mat-option>
+              <mat-option value="South Africa">South Africa</mat-option>
+              <mat-option value="Nigeria">Nigeria</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </span>
+      </div>
+    </div>
+    <div class="border rounded-lg p-6">
+      <app-upload-item (sendFileUrl)="addToDocs($event)"></app-upload-item>
+    </div>
+  </section>
+</main>
+<section class="btn-container">
+  <button class="btn-primary" [disabled]="!documentInfo.valid" (click)="submit()">Submit Document</button>
+</section>

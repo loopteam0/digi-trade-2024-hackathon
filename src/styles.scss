@@ -68,7 +68,7 @@ body {
 }
 
 .btn-primary {
-  @apply btn bg-darkPrimary   text-white border-none  disabled:bg-darkPrimary disabled:bg-opacity-65  transition duration-300 ease-in-out;
+  @apply btn bg-primary   text-white border-none  disabled:bg-primary disabled:bg-opacity-65  transition duration-300 ease-in-out;
   &:hover {
     @apply bg-opacity-80;
   }
