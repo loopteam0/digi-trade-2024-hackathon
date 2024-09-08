@@ -1,4 +1,4 @@
-import { Component, output, ViewChild } from "@angular/core";
+import { Component, model, OnInit, output, ViewChild } from "@angular/core";
 import { MatIcon } from "@angular/material/icon";
 import {
   ApexChart,
@@ -9,6 +9,8 @@ import {
   ChartComponent,
   NgApexchartsModule,
 } from "ng-apexcharts";
+import { DocumentInfo } from "../verify-document/verify-document.component";
+import { environment } from "src/environments/environment.development";
 
 export interface ChartOptions {
   series: ApexNonAxisChartSeries;
@@ -26,9 +28,13 @@ export interface ChartOptions {
   templateUrl: "./verification-result.component.html",
   styleUrl: "./verification-result.component.scss",
 })
-export class VerificationResultComponent {
+export class VerificationResultComponent implements OnInit {
+  assetUrl = environment.assetsUrl;
+
   @ViewChild("chart") chart!: ChartComponent;
   navigateBack = output();
+  documentData = model<DocumentInfo>();
+  isDocumentVerification = false;
 
   recommendations: string[] = [
     "Establish specific credit limits for customer due to her financial health.",
@@ -77,5 +83,10 @@ export class VerificationResultComponent {
 
   goBack() {
     this.navigateBack.emit();
+  }
+  ngOnInit(): void {
+    if (window.location.href.includes("document-verification")) {
+      this.isDocumentVerification = true;
+    }
   }
 }

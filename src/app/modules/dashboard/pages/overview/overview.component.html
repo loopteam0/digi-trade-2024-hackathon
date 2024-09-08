@@ -48,19 +48,21 @@
         <ng-container matColumnDef="severity">
           <th mat-header-cell *matHeaderCellDef>Severity</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.severity }}
-            <div class="progressContainer">
-              <div
-                class="progressBar"
-                [style]="'width:' + element.severity + '%'"
-                [ngClass]="{
-                  'bg-green-600': element.severity <= 30,
-                  'bg-yellow-400': element.severity > 30 && element.severity <= 60,
-                  'bg-orange-500': element.severity > 60 && element.severity <= 70,
-                  'bg-red-500': element.severity > 70 && element.severity <= 185,
-                  'bg-red-600': element.severity > 85,
-                }"
-              ></div>
+            <div class="flex items-center w-full gap-2">
+              <div class="progressContainer">
+                <div
+                  class="progressBar"
+                  [style]="'width:' + element.severity + '%'"
+                  [ngClass]="{
+                    'bg-green-600': element.severity <= 30,
+                    'bg-yellow-400': element.severity > 30 && element.severity <= 60,
+                    'bg-orange-500': element.severity > 60 && element.severity <= 70,
+                    'bg-red-500': element.severity > 70 && element.severity <= 185,
+                    'bg-red-600': element.severity > 85,
+                  }"
+                ></div>
+              </div>
+              <p class="text-xs">{{ element.severity }}%</p>
             </div>
           </td>
         </ng-container>
@@ -115,19 +117,21 @@
       <ng-container matColumnDef="severity">
         <th mat-header-cell *matHeaderCellDef>Severity</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.severity }}
-          <div class="progressContainer">
-            <div
-              class="progressBar"
-              [style]="'width:' + element.severity + '%'"
-              [ngClass]="{
-                'bg-green-600': element.severity <= 30,
-                'bg-yellow-400': element.severity > 30 && element.severity <= 60,
-                'bg-orange-500': element.severity > 60 && element.severity <= 70,
-                'bg-red-500': element.severity > 70 && element.severity <= 185,
-                'bg-red-600': element.severity > 85,
-              }"
-            ></div>
+          <div class="flex items-center w-full gap-2">
+            <div class="progressContainer">
+              <div
+                class="progressBar"
+                [style]="'width:' + element.severity + '%'"
+                [ngClass]="{
+                  'bg-green-600': element.severity <= 30,
+                  'bg-yellow-400': element.severity > 30 && element.severity <= 60,
+                  'bg-orange-500': element.severity > 60 && element.severity <= 70,
+                  'bg-red-500': element.severity > 70 && element.severity <= 185,
+                  'bg-red-600': element.severity > 85,
+                }"
+              ></div>
+            </div>
+            <p class="text-xs">{{ element.severity }}%</p>
           </div>
         </td>
       </ng-container>

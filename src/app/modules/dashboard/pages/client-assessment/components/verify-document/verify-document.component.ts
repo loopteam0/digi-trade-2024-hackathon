@@ -6,6 +6,12 @@ import { MatInput } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { ImageProps, UploadItemComponent } from "./upload-item/upload-item.component";
 
+export interface DocumentInfo {
+  docType: string;
+  bank: string;
+  country: string;
+  documents: ImageProps[];
+}
 @Component({
   selector: "app-verify-document",
   standalone: true,
@@ -24,7 +30,7 @@ import { ImageProps, UploadItemComponent } from "./upload-item/upload-item.compo
 export class VerifyDocumentComponent {
   id = input<number>(NaN, { alias: "clientId" });
   uploadedDocs: ImageProps[] = [];
-  fileVerified = output<boolean>();
+  fileVerified = output<DocumentInfo | null>();
 
   fb = inject(NonNullableFormBuilder);
   documentInfo = this.fb.group({
@@ -35,11 +41,17 @@ export class VerifyDocumentComponent {
   });
   submit() {
     if (this.uploadedDocs.length > 0) {
-      this.fileVerified.emit(true);
+      const data: DocumentInfo = {
+        docType: this.documentInfo.value.docType as string,
+        bank: this.documentInfo.value.bank as string,
+        country: this.documentInfo.value.country as string,
+        documents: this.uploadedDocs,
+      };
+      this.fileVerified.emit(data);
     }
   }
   goBack() {
-    this.fileVerified.emit(false);
+    this.fileVerified.emit(null);
   }
   addToDocs(data: ImageProps[]) {
     this.uploadedDocs = data;

@@ -5,7 +5,7 @@ import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { VerificationResultComponent } from "./components/verification-result/verification-result.component";
-import { VerifyDocumentComponent } from "./components/verify-document/verify-document.component";
+import { DocumentInfo, VerifyDocumentComponent } from "./components/verify-document/verify-document.component";
 import { NgTemplateOutlet } from "@angular/common";
 
 interface ClientData {
@@ -65,7 +65,7 @@ export class ClientAssessmentComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(this.clientData);
     this.dataSource.paginator = this.paginator;
   }
-  isDataSubmitted(data: boolean) {
+  isDataSubmitted(data: DocumentInfo | null) {
     if (data) {
       this.status = PAGESTATES.VERIFICATION_RESULTS;
     } else {

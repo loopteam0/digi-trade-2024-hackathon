@@ -1,6 +1,9 @@
 import { Component, inject } from "@angular/core";
 import { VerificationResultComponent } from "../client-assessment/components/verification-result/verification-result.component";
-import { VerifyDocumentComponent } from "../client-assessment/components/verify-document/verify-document.component";
+import {
+  DocumentInfo,
+  VerifyDocumentComponent,
+} from "../client-assessment/components/verify-document/verify-document.component";
 import { Router } from "@angular/router";
 enum PAGESTATES {
   VERIFY_DOCUMENTS = 1,
@@ -18,10 +21,12 @@ export class DocumentVerificationComponent {
   progress = PAGESTATES;
   router = inject(Router);
   id!: number;
+  documentData!: DocumentInfo;
 
-  isDataSubmitted(data: boolean) {
+  isDataSubmitted(data: DocumentInfo | null) {
     if (data) {
       this.status = PAGESTATES.VERIFICATION_RESULTS;
+      this.documentData = data;
     } else {
       this.toDashboard();
     }

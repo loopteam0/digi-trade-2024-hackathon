@@ -3,6 +3,6 @@
     <app-verify-document [clientId]="id" (fileVerified)="isDataSubmitted($event)"></app-verify-document>
   }
   @case (progress.VERIFICATION_RESULTS) {
-    <app-verification-result (navigateBack)="toDashboard()"></app-verification-result>
+    <app-verification-result (navigateBack)="toDashboard()" [documentData]="documentData"></app-verification-result>
   }
 }
