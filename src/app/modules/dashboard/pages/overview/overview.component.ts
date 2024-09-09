@@ -183,7 +183,10 @@ export class OverviewComponent {
   ];
   getUserData() {
     const data = this.store.getItem("userData");
-    this.name.set(data!.name);
+    if (!data) {
+      return;
+    } else { this.name.set(data!.name); }
+
   }
 
   changeView(view: string) {
